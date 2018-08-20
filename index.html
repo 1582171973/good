@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="food">
+		<div id="close"></div>
+		<ul>
+			<li>
+				<dl>
+					<dt><img src="images/hero1.jpg" alt=""></dt>
+					<dd>奖品1</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="images/hero2.jpg" alt=""></dt>
+					<dd>奖品2</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="images/hero3.jpg" alt=""></dt>
+					<dd>奖品3</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="images/hero4.jpg" alt=""></dt>
+					<dd>奖品4</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="images/hero5.jpg" alt=""></dt>
+					<dd>奖品5</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="images/hero6.jpg" alt=""></dt>
+					<dd>奖品6</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="images/hero7.jpg" alt=""></dt>
+					<dd>奖品7</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img src="images/hero8.jpg" alt=""></dt>
+					<dd>奖品8</dd>
+				</dl>
+			</li>
+			<li class="nine">
+				<dl>
+					<dt id="btn"><img id="pic" src="images/hero1.jpg" alt=""></dt>
+					<dd>点击抽奖</dd>
+				</dl>
+			</li>
+
+		</ul>
+	</div>
+	<script>
+		var oLi=document.getElementsByTagName("li");
+		var oBtn=document.getElementById("btn");
+		var oPic=document.getElementById("pic");
+		var num=i=t=0;//计数器(顺时针)
+
+		oBtn.onclick=function(){
+			oPic.style.transform="scale(0.6)";
+			oPic.style.transition="1s";
+			view();//动画效果视图
+		}
+
+		function view(){
+			num=parseInt(Math.random()*10+20);//确定顺时针循环次数
+			console.log('固定:'+num);
+
+			//确定递归次数
+			if (i<num) { //i是已完成的li循环个数(它是变化的)
+				i++; //每循环完一个li标签 +1
+				setTimeout(view,200);
+				console.log('动态:'+i);
+			} else {
+				i=0;//为下一次抽奖做准备
+				oPic.style.transform="scale(0.6)";
+				oPic.style.transition="1s";
+			}
+
+			//动画
+			if (t<oLi.length-1) {//先清除所有,在设置一个人
+				for(var j=0;j<oLi.length-1;j++){
+					oLi[j].style.border="2px solid #000";
+					oLi[j].style.background="#fff";	
+				}
+				oLi[t].style.border="2px solid #f00";
+				oLi[t].style.background="rgba(255,0,0,0.5)";
+				t++;
+			}
+			else{
+				t=0;
+			}
+		}
+	</script>
+</body>
+</html>
